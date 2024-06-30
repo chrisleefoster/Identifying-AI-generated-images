@@ -107,18 +107,18 @@ def plotTestMetrics(metrics):
 ###################
 #   START HERE    #
 ###################
+if __name__ == "__main__":
+    # get data
+    train_data, val_data, test_data = importData()
 
-# get data
-train_data, val_data, test_data = importData()
+    # list of learning rates to test
+    learning_rate = [0.01, 0.005, 0.001, 0.0005, 0.0001, 0.00005, 0.00001]
 
-# list of learning rates to test
-learning_rate = [0.01, 0.005, 0.001, 0.0005, 0.0001, 0.00005, 0.00001]
+    # train model with various learning rates, returns metrics from testing
+    test_metrics = testCNN(train_data, val_data, learning_rate)
+    # returns array with the following values:
+    # [0,             1,         2      ]
+    # [learning rate, test_loss, test_f1]
 
-# train model with various learning rates, returns metrics from testing
-test_metrics = testCNN(train_data, val_data, learning_rate)
-# returns array with the following values:
-# [0,             1,         2      ]
-# [learning rate, test_loss, test_f1]
-
-# plot test metrics
-plotTestMetrics(test_metrics)
+    # plot test metrics
+    plotTestMetrics(test_metrics)
